@@ -1,0 +1,13 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Classes\jpegfile\shell\ImageResize]
+@="Resize Image"
+
+[HKEY_CURRENT_USER\Software\Classes\jpegfile\shell\ImageResize\command]
+@="\"C:\\Users\\ckugler\\Documents\\Dev Tools\\Shell Extensions\\ImageResize.exe\" \"%1\""
+
+[HKEY_CURRENT_USER\Software\Classes\pngfile\shell\ImageResize]
+@="Resize Image"
+
+[HKEY_CURRENT_USER\Software\Classes\pngfile\shell\ImageResize\command]
+@="\"C:\\Users\\ckugler\\Documents\\Dev Tools\\Shell Extensions\\ImageResize.exe\" \"%1\""
