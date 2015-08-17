@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -14,22 +16,25 @@ namespace ImageResize
         private int origWidth; 
         private int height;
         private int width;
-        
+        private string firstFileName; 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public VM()
-        {
-            this.OrigHeight = this.Height = 600;
-            this.OrigWidth = this.Width = 800;             
-            this.MaintainAspectRatio = true;
-            this.PropertyChanged += VM_PropertyChanged;
+        {                                    
             this.OKCommand = new RelayCommand(this.OK);
             this.CancelCommand = new RelayCommand(this.Cancel);
-            //this.SourceFile = "accuracy1.png";            
+                 
             string[] args = Environment.GetCommandLineArgs();
             this.SourceFiles = new string[args.Length - 1]; 
             for(int i = 1; i < args.Length; i++)
-                this.SourceFiles[i-1] = args[i];                      
+                this.SourceFiles[i-1] = args[i];
+            FileInfo fi = new FileInfo(this.SourceFiles[0]);
+            this.FirstFileName = fi.Name;
+            Image img = Image.FromFile(this.SourceFiles[0]);
+            this.OrigHeight = this.Height = img.Width;
+            this.OrigWidth = this.Width = img.Height; 
+            this.MaintainAspectRatio = true;
+            this.PropertyChanged += VM_PropertyChanged;
         }
 
         void VM_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -102,8 +107,6 @@ namespace ImageResize
                 h(this, new PropertyChangedEventArgs(name));
         }        
 
-
-
         public bool MaintainAspectRatio
         {
             get { return this.maintainAspectRatio; }
@@ -135,8 +138,9 @@ namespace ImageResize
         }
 
         public string[] SourceFiles { get; private set; }
-
         public RelayCommand OKCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }
+        public string FirstFileName { get { return this.firstFileName; } set { this.firstFileName = value; OnPropertyChanged("FirstFileName"); } }
+        
     }
 }
