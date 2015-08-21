@@ -54,7 +54,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ITunesSettings.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Resizer.cs" />
     <Compile Include="VM.cs" />

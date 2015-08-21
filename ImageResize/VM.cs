@@ -11,13 +11,13 @@ namespace ImageResize
 {
     public class VM : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         private bool maintainAspectRatio;
         private int origHeight;
         private int origWidth; 
         private int height;
         private int width;
-        private string firstFileName; 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private string firstFileName;         
 
         public VM()
         {                                    
